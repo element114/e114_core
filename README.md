@@ -12,8 +12,21 @@ This crate is:
 You have been warned.
 
 ## Optional features
-> `jsonschema` adds `#[derive(JsonSchema)]` to certain types and the `schemars` dependency.
-> `actix_web` adds `actix-web` `From` impl for `WebResult` and the `actix-web` dependency.
+```toml
+e114_core = { version = "0.1.0", features = ["jsonschema"] }
+```
+Adds `#[derive(JsonSchema)]` to certain types and the `schemars` dependency.
+
+```toml
+e114_core = { version = "0.1.0", features = ["actix_web"] }
+```
+Adds `actix-web` `From` impl for `WebResult` and the `actix-web` dependency.
+
+```toml
+e114_core = { version = "0.1.0", features = ["hyper_body"] }
+```
+Adds `http::Response<hyper::Body>` impl for `WebResult` and the `hyper` dependency.
+This is intended to be used by `warp` and other frameworks which are built on `http` and `hyper`.
 
 ## Minimum rust version
 1.40
