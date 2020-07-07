@@ -16,4 +16,4 @@ This crate is:
 1.40
 
 ## Build, debug and release tools
-- cargo fmt & cargo +1.40.0 clippy --tests --features actix_web,jsonschema
+- cargo fmt & cargo +1.40.0 clippy --tests --features actix_web,hyper,jsonschema
