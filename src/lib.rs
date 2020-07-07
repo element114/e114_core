@@ -1,7 +1,7 @@
 #![forbid(unsafe_code)]
 #![warn(clippy::pedantic)]
 
-#[cfg(feature = "actixweb")]
+#[cfg(feature = "actix_web")]
 pub mod actix_web;
 #[cfg(feature = "hyper")]
 pub mod hyper;
