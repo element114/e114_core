@@ -23,9 +23,7 @@ mod tests {
         let z = Zed();
         assert_eq!("Zed", get_type_name(&z));
 
-        let sz = SuperZed {
-            my_name: "My name is Zed!".to_owned(),
-        };
+        let sz = SuperZed { my_name: "My name is Zed!".to_owned() };
         assert_eq!("SuperZed", get_type_name(&sz));
     }
 }

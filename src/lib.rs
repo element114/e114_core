@@ -23,9 +23,6 @@ pub struct ListOptions {
 impl Default for ListOptions {
     #[must_use]
     fn default() -> Self {
-        Self {
-            offset: None,
-            limit: Some(100),
-        }
+        Self { offset: None, limit: Some(100) }
     }
 }

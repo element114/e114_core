@@ -8,6 +8,9 @@ This crate is:
 #![warn(clippy::pedantic)]
 ```
 
+# ☠☡☣☢ This crate is in rapid flux, do not rely on it just yet! ☢☣☡☠
+You have been warned.
+
 ## Optional features
 > `jsonschema` adds `#[derive(JsonSchema)]` to certain types and the `schemars` dependency.
 > `actix_web` adds `actix-web` `From` impl for `WebResult` and the `actix-web` dependency.

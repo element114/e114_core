@@ -56,10 +56,7 @@ pub struct MessageValue {
 impl From<Response> for MessageValue {
     #[must_use]
     fn from(resp: Response) -> Self {
-        Self {
-            msg: resp.msg,
-            v: resp.v,
-        }
+        Self { msg: resp.msg, v: resp.v }
     }
 }
 
@@ -71,10 +68,7 @@ impl MessageValue {
 
     #[must_use]
     pub fn str(msg: &str) -> Self {
-        Self {
-            msg: msg.to_owned(),
-            v: None,
-        }
+        Self { msg: msg.to_owned(), v: None }
     }
 
     #[must_use]

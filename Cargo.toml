@@ -3,6 +3,11 @@ name = "e114_core"
 version = "0.1.0"
 authors = ["Andras Mocsary <nobody@reedwolf.com>"]
 edition = "2018"
+repository = "https://github.com/element114/e114_core"
+documentation = "https://docs.rs/e114_core"
+license = "MIT OR Apache-2.0"
+description = "A convenient wrapper around several rust web frameworks to isolate business logic from protocol handling."
+publish = true
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
