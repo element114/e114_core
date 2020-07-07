@@ -1,0 +1,25 @@
+[package]
+name = "e114_core"
+version = "0.1.0"
+authors = ["Andras Mocsary <nobody@reedwolf.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = { version = "1.*", features = ["derive"] }
+serde_json = "1.*"
+# this crate is compatible with schemars 0.6.* and 0.7.*
+schemars = { version =  "0.*", optional = true }
+log = "0.*"
+# this crate is compatible with http 0.1.* and 0.2.*
+http = "0.*"
+# this crate is compatible with actix-web 1.*, 2.* and 3.*
+actix-web = { version = "*", optional = true }
+hyper = { version = "0.*", optional = true }
+
+[features]
+default = []
+jsonschema = ["schemars"]
+actix_web = ["actix-web"]
+hyper_body = ["hyper"]
