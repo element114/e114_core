@@ -5,7 +5,13 @@ impl From<WebResult> for HttpResponse {
     #[must_use]
     fn from(res: WebResult) -> Self {
         match res {
-            WebResult::Ok(v) => Self::Ok().json(&v),
+            WebResult::Ok(v) => {
+                let mut resp_builder = Self::Ok();
+                if let Some(total) = &v.get("full_count") {
+                    resp_builder.header("X-Total-Count", total.to_string());
+                }
+                resp_builder.json(&v)
+            }
             WebResult::Err(e) => {
                 let status_code = e.code;
                 let mv: MessageValue = e.into();

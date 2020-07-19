@@ -8,7 +8,11 @@ impl From<WebResult> for Response<Body> {
     fn from(res: WebResult) -> Self {
         match res {
             WebResult::Ok(v) => {
-                Response::builder().body(Body::from(serde_json::to_string(&v).unwrap())).unwrap()
+                let mut resp_builder = Response::builder();
+                if let Some(total) = &v.get("full_count") {
+                    resp_builder = resp_builder.header("X-Total-Count", total.to_string());
+                }
+                resp_builder.body(Body::from(serde_json::to_string(&v).unwrap())).unwrap()
             }
             WebResult::Err(e) => {
                 let status_code = e.code;
