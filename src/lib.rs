@@ -22,7 +22,7 @@ pub struct ListOptions {
     #[serde(alias = "_end")]
     pub limit: Option<u64>,
     #[serde(alias = "_order")]
-    pub order: Option<Order>,
+    pub order: Option<ListOrder>,
     #[serde(alias = "_sort")]
     pub sort: Option<String>,
 }
@@ -35,7 +35,7 @@ impl Default for ListOptions {
 
 #[cfg_attr(feature = "jsonschema", derive(JsonSchema))]
 #[derive(Debug, Serialize, Deserialize, Clone)]
-pub enum Order {
+pub enum ListOrder {
     #[serde(alias = "ASC", alias = "asc")]
     Asc,
     #[serde(alias = "DESC", alias = "desc")]
