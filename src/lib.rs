@@ -17,13 +17,9 @@ use serde::{Deserialize, Serialize};
 #[cfg_attr(feature = "jsonschema", derive(JsonSchema))]
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct ListOptions {
-    #[serde(alias = "_start")]
     pub offset: Option<u64>,
-    #[serde(alias = "_end")]
     pub limit: Option<u64>,
-    #[serde(alias = "_order")]
     pub order: Option<ListOrder>,
-    #[serde(alias = "_sort")]
     pub sort: Option<String>,
 }
 impl Default for ListOptions {
