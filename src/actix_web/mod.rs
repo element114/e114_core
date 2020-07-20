@@ -8,7 +8,7 @@ impl From<WebResult> for HttpResponse {
             WebResult::Ok(v) => {
                 let mut resp_builder = Self::Ok();
                 if let Some(total) = &v.get("full_count") {
-                    resp_builder.header("X-Total-Count", total.to_string());
+                    resp_builder.set_header("X-Total-Count", total.to_string());
                 }
                 resp_builder.json(&v)
             }
