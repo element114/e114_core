@@ -28,3 +28,9 @@ default = []
 jsonschema = ["schemars"]
 actix_web = ["actix-web"]
 hyper_body = ["hyper"]
+
+[dev-dependencies]
+schemars = { version =  ">=0.6" }
+
+[package.metadata.docs.rs]
+all-features = true
