@@ -69,7 +69,7 @@ impl JsonSchema for MessageValue {
 
         let mut v_schema = SchemaObject::default();
         v_schema.instance_type = Some(InstanceType::Object.into());
-        v_schema.object().additional_properties = Some(Box::new(true.into()));
+        // v_schema.object().additional_properties = Some(Box::new(true.into()));
         v_schema.metadata().default = Some(serde_json::json!({}));
 
         let obj = schema.object();
