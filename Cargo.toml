@@ -1,6 +1,6 @@
 [package]
 name = "e114_core"
-version = "0.1.3-alpha.2"
+version = "0.1.3"
 authors = ["Andras Mocsary <nobody@reedwolf.com>"]
 edition = "2018"
 repository = "https://github.com/element114/e114_core"
