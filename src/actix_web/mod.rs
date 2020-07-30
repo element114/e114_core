@@ -14,7 +14,7 @@ impl From<WebResult> for HttpResponse {
             }
             WebResult::Err(e) => {
                 let status_code = e.code;
-                let mv: MessageValue = e.into();
+                let mv: ErrorResponse = e.into();
                 Self::build(status_code).json(&mv)
             }
         }
