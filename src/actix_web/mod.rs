@@ -1,4 +1,4 @@
-use crate::response::{MessageValue, WebResult};
+use crate::response::{ErrorResponse, WebResult};
 use actix_web::HttpResponse;
 
 impl From<WebResult> for HttpResponse {
