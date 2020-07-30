@@ -51,11 +51,11 @@ impl Response {
 #[cfg_attr(feature = "jsonschema", derive(JsonSchema))]
 #[derive(Debug, Clone, Serialize)]
 pub struct MessageValue {
-    #[serde(default)]
+    #[serde(skip_serializing_if = "String::is_empty", default)]
     message: String,
-    #[serde(default, rename = "errorType")]
+    #[serde(skip_serializing_if = "Option::is_none", default, rename = "errorType")]
     error_type: Option<String>,
-    #[serde(default)]
+    #[serde(skip_serializing_if = "Option::is_none", default)]
     value: Option<JsObj>,
 }
 #[cfg_attr(feature = "jsonschema", derive(JsonSchema))]
@@ -136,18 +136,15 @@ mod tests {
                     "description": "@message is to be used to plain english, user facing feedback messages. @error_type may contain additional information from the server, for example 'Database Error' @value: is a json value to be used for application intercommunication purposes.",
                     "properties": {
                         "errorType": {
-                            "default": null,
                             "type": [
                                 "string",
                                 "null"
                             ]
                         },
                         "message": {
-                            "default": "",
                             "type": "string"
                         },
                         "value": {
-                            "default": null,
                             "type": [ "object", "null" ],
                             "additionalProperties": true
                         },
