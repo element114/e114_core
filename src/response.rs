@@ -99,7 +99,6 @@ impl MessageValue {
         }
     }
 }
-
 #[cfg_attr(feature = "jsonschema", derive(JsonSchema))]
 #[derive(Debug, Clone, Serialize)]
 pub struct ErrorResponse {
@@ -109,6 +108,12 @@ impl From<Response> for ErrorResponse {
     #[must_use]
     fn from(resp: Response) -> Self {
         ErrorResponse { errors: MessageValue::build_from(resp) }
+    }
+}
+impl From<MessageValue> for ErrorResponse {
+    #[must_use]
+    fn from(mv: MessageValue) -> Self {
+        ErrorResponse { errors: vec![mv] }
     }
 }
 
