@@ -19,10 +19,21 @@ use serde::{Deserialize, Serialize};
 pub struct ListOptions {
     pub offset: Option<u64>,
     pub limit: Option<u64>,
+    pub order: Option<ListOrder>,
+    pub sort: Option<String>,
 }
 impl Default for ListOptions {
     #[must_use]
     fn default() -> Self {
-        Self { offset: None, limit: Some(100) }
+        Self { offset: None, limit: Some(100), order: None, sort: None }
     }
+}
+
+#[cfg_attr(feature = "jsonschema", derive(JsonSchema))]
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub enum ListOrder {
+    #[serde(alias = "ASC", alias = "asc")]
+    Asc,
+    #[serde(alias = "DESC", alias = "desc")]
+    Desc,
 }

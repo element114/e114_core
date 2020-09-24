@@ -1,6 +1,6 @@
 [package]
 name = "e114_core"
-version = "0.1.2-alpha.0"
+version = "0.1.4-alpha.0"
 authors = ["Andras Mocsary <nobody@reedwolf.com>"]
 edition = "2018"
 repository = "https://github.com/element114/e114_core"
@@ -20,7 +20,7 @@ log = ">=0.4"
 # this crate is compatible with http 0.1.* and 0.2.*
 http = ">=0.1"
 # this crate is compatible with actix-web 1.*, 2.* and 3.*
-actix-web = { version = ">=1", optional = true }
+actix-web = { version = "3.0", optional = true }
 hyper = { version = ">=0.11", optional = true }
 
 [features]
@@ -28,3 +28,9 @@ default = []
 jsonschema = ["schemars"]
 actix_web = ["actix-web"]
 hyper_body = ["hyper"]
+
+[dev-dependencies]
+schemars = { version =  ">=0.6" }
+
+[package.metadata.docs.rs]
+all-features = true
