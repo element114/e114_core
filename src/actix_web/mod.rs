@@ -1,5 +1,6 @@
-use crate::responses::{ErrorResponse, WebResult};
+use crate::responses::WebResult;
 use actix_web::HttpResponse;
+use http::StatusCode;
 
 impl From<WebResult> for HttpResponse {
     #[must_use]
@@ -12,11 +13,15 @@ impl From<WebResult> for HttpResponse {
                 }
                 resp_builder.json(&v)
             }
-            WebResult::Err(e) => {
-                let status_code = e.code;
-                let mv: ErrorResponse = e.into();
-                Self::build(status_code).json(&mv)
-            }
+            WebResult::Err(e) => e
+                .errors
+                .iter()
+                .max_by_key(|e| e.status)
+                .map_or_else(
+                    || Self::build(StatusCode::INTERNAL_SERVER_ERROR),
+                    |large_error| Self::build(large_error.status),
+                )
+                .json(&e),
         }
     }
 }

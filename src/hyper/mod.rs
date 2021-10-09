@@ -1,5 +1,5 @@
-use crate::responses::{ErrorResponse, WebResult};
-use http::Response;
+use crate::responses::WebResult;
+use http::{Response, StatusCode};
 use hyper::Body;
 
 #[allow(clippy::use_self)]
@@ -14,14 +14,16 @@ impl From<WebResult> for Response<Body> {
                 }
                 resp_builder.body(Body::from(serde_json::to_string(&v).unwrap())).unwrap()
             }
-            WebResult::Err(e) => {
-                let status_code = e.code;
-                let mv: ErrorResponse = e.into();
-                Response::builder()
-                    .status(status_code)
-                    .body(Body::from(serde_json::to_string(&mv).unwrap()))
-                    .unwrap()
-            }
+            WebResult::Err(e) => e
+                .errors
+                .iter()
+                .max_by_key(|e| e.status)
+                .map_or_else(
+                    || Response::builder().status(StatusCode::INTERNAL_SERVER_ERROR),
+                    |large_error| Response::builder().status(large_error.status),
+                )
+                .body(Body::from(serde_json::to_string(&e).unwrap()))
+                .unwrap(),
         }
     }
 }
