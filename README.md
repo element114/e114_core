@@ -32,4 +32,4 @@ This is intended to be used by `warp` and other frameworks which are built on `h
 1.40
 
 ## Build, debug and release tools
-- cargo fmt & cargo +1.40.0 clippy --tests --features actix_web,hyper,jsonschema
+- cargo fmt & cargo +1.45.2 clippy --tests --features actix_web,hyper_body,jsonschema

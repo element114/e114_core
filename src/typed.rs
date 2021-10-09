@@ -1,3 +1,6 @@
+/// # Panics
+///
+/// Panics if `T` can not be formatted as String.
 pub fn get_type_name<T>(it_is: &T) -> String
 where
     T: std::fmt::Debug,

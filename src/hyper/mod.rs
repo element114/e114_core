@@ -1,4 +1,4 @@
-use crate::response::{MessageValue, WebResult};
+use crate::responses::{ErrorResponse, WebResult};
 use http::Response;
 use hyper::Body;
 
@@ -16,7 +16,7 @@ impl From<WebResult> for Response<Body> {
             }
             WebResult::Err(e) => {
                 let status_code = e.code;
-                let mv: MessageValue = e.into();
+                let mv: ErrorResponse = e.into();
                 Response::builder()
                     .status(status_code)
                     .body(Body::from(serde_json::to_string(&mv).unwrap()))
