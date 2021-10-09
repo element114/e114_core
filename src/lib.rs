@@ -5,7 +5,7 @@
 pub mod actix_web;
 #[cfg(feature = "hyper")]
 pub mod hyper;
-pub mod response;
+pub mod responses;
 pub mod typed;
 
 #[cfg(feature = "jsonschema")]

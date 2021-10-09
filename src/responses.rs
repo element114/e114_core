@@ -45,9 +45,9 @@ impl Response {
     }
 }
 
-/// @message is to be used to plain english, user facing feedback messages.
-/// @error_type may contain additional information from the server, for example 'Database Error'
-/// @value: is a json value to be used for application intercommunication purposes.
+/// `message` is to be used to plain english, user facing feedback messages.
+/// `error_type` may contain additional information from the server, for example 'Database Error'
+/// `value`: is a json value to be used for application intercommunication purposes.
 #[cfg_attr(feature = "jsonschema", derive(JsonSchema))]
 #[derive(Debug, Clone, Serialize)]
 pub struct MessageValue {
@@ -69,7 +69,7 @@ impl From<ErrorWithMessage> for MessageValue {
     #[must_use]
     fn from(resp: ErrorWithMessage) -> Self {
         if let Some(v) = resp.v {
-            Self::json(resp.msg, v)
+            Self::json(resp.msg, &v)
         } else {
             Self::new(resp.msg)
         }
@@ -90,15 +90,19 @@ impl MessageValue {
         Self { message: msg.to_owned(), error_type: None, value: None }
     }
 
+    /// # Panics
+    ///
+    /// Panics if `v.as_object()` fails.
     #[must_use]
-    pub fn json(message: String, v: Value) -> Self {
+    pub fn json(message: String, v: &Value) -> Self {
         Self {
             message,
             error_type: None,
-            value: Some(JsObj { extra: v.as_object().unwrap().to_owned() }),
+            value: Some(JsObj { extra: v.as_object().unwrap().clone() }),
         }
     }
 }
+
 #[cfg_attr(feature = "jsonschema", derive(JsonSchema))]
 #[derive(Debug, Clone, Serialize)]
 pub struct ErrorResponse {
